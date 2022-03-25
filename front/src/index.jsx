@@ -6,7 +6,6 @@ import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import reducer from './reducers'
 import App from './containers/App'
-import { composeWithDevTools } from 'redux-devtools-extension'
 
 const middleware = [ thunk ]
 if (process.env.NODE_ENV !== 'production') {
@@ -15,7 +14,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 const store = createStore(
   reducer,
-  composeWithDevTools(applyMiddleware(...middleware))
+ applyMiddleware(...middleware)
 )
 
 render(

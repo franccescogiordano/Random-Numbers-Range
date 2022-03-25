@@ -22,7 +22,8 @@ function view(state = {
 }
 
 function random(state = {
-    result: {}
+    result: {},
+    columnas:0
 }, action) {
     switch (action.type) {
         case "random-result": {
