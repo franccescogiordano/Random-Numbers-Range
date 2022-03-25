@@ -1,4 +1,4 @@
-package co.com.sofka.mentoring35;
+package co.com.sofka.mentoring35.model;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package co.com.sofka.mentoring35;
+package co.com.sofka.mentoring35.controller;
 
 import java.util.Collections;
 import java.util.Date;
@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.com.sofka.mentoring35.model.Random;
+import co.com.sofka.mentoring35.model.RequestDTO;
+import co.com.sofka.mentoring35.repository.RandomRepository;
+import co.com.sofka.mentoring35.service.RandomService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -21,32 +25,17 @@ import reactor.core.publisher.Mono;
 @RequestMapping(value = "/r")
 public class RandomController {
 
-    private RandomRepository randomRepository;
+   @Autowired
+    private RandomService randomService;
 
-    @Autowired
-    public RandomController(RandomRepository randomRepository) {
-        this.randomRepository = randomRepository;
-    }
 
     @PostMapping("")
     public Mono<Random> post(@RequestBody RequestDTO request) {
-        return Mono.just(new Random()).map(entity -> {
-            entity.setDate(new Date());
-            entity.setOrginalList(request.getList());
-            return entity;
-        }).map(entity -> {
-            var list = Stream.of(request.getList().split(","))
-                .map(p -> p.trim())
-                .collect(Collectors.toList());
-            Collections.shuffle(list);
-            var randomList = list.stream().collect(Collectors.joining(","));
-            entity.setRandomList(randomList);
-            return entity;
-        }).flatMap(randomRepository::save);
+      return randomService.post(request);
     }
 
     @GetMapping("")
     public Flux<Random> get() {
-        return randomRepository.findAll();
+        return randomService.get();
     }
 }
