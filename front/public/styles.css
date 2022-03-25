@@ -1,0 +1,36 @@
+body{
+    background-color:bisque;
+}
+
+*{
+    margin: 2;
+    padding: 2;
+}
+
+input{
+    margin: 4px;
+}
+
+div{
+text-align: center;
+}
+
+button{
+  border-radius:5vh;
+  width: 20vh;
+  height: 10vh;
+text-shadow: 2px;
+border:solid rgb(17, 17, 17);
+background-color: darkslategray;
+    margin: 10px;
+}
+
+  body {
+    color :rgb(29, 13, 255);
+    font-size: large;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  h1 {
+    color: green;
+  }

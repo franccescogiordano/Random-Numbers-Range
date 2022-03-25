@@ -18,8 +18,6 @@ const contents = props.result?.todoarmado?.map((value,contador) => {
       <span key={contador}>{value},</span></>);
   return (<span key={contador}>{value},</span>)
 })
-
-  console.log("props!!!!!!!!:" + props)
   return <div>
     Resultado:
  {contents}
